@@ -1,6 +1,7 @@
+import { config } from "../../config";
+
 // Upload image through the backend server which securely communicates with Cloudinary
-// Backend URL (admin server running on port 8000)
-const BACKEND_URL = "http://localhost:8000";
+const BACKEND_URL = config?.baseUrl || "http://localhost:8000";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const upload = async (file: any): Promise<string> => {

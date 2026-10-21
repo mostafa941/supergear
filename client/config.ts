@@ -2,28 +2,26 @@ interface Config {
     baseUrl : string
 }
 
-const checkConfig = (server : string): Config | {} =>{
-    let config : Config | {} = {}
+const checkConfig = (server : string): Config =>{
+    let baseUrl = ""
     switch (server) {
         case "production":
-            config = {
-                baseUrl : "https://supergear-five.vercel.app/"
-            }
-            
+            baseUrl = "https://supergear-five.vercel.app"
             break;
 
-            case "local":
-                config = {
-                    baseUrl : "http://localhost:8000"
-                }
-                break;
+        case "local":
+            baseUrl = "http://localhost:8000"
+            break;
     
         default:
+            baseUrl = "https://supergear-five.vercel.app"
             break;
     }
 
-    return config
+    return {
+        baseUrl: baseUrl.replace(/\/+$/, "")
+    }
 }
 
 export const selectServer = "production"
-export const config = checkConfig(selectServer) as Config
+export const config = checkConfig(selectServer)

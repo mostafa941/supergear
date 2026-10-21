@@ -1,6 +1,7 @@
 export const getData = async (endpoint: string) => {
   try {
-    const response = await fetch(endpoint, {
+    const sanitizedEndpoint = endpoint.replace(/([^:])\/\/+/g, "$1/");
+    const response = await fetch(sanitizedEndpoint, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
